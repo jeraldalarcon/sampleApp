@@ -1,0 +1,78 @@
+<div color="warn">{{errorMsg}}</div>
+<mat-toolbar color="accent">{{data.title}}</mat-toolbar>
+<!-- <form [formGroup]="data.mode === 'create'?createForm:updateForm" *ngIf="data.mode !== 'delete'?true:false"> -->
+<form [formGroup]="form" >
+  <div mat-dialog-content class="example-card">
+        <mat-card-content>
+            <mat-form-field class="full-width" >
+                <mat-label>Name</mat-label>
+                <input  matInput  placeholder="Name"  formControlName="name"  required [class.is-invalid]="(form.get('name'))">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>User Name</mat-label>
+                <input  matInput (change)="checkUserName($event)" placeholder="User name" formControlName="userName"  required>
+            </mat-form-field>
+            <span *ngIf="form.get('userName').hasError('pattern')">
+                <p class="has-error">
+                    Required 1 number and 1 letter
+                </p>
+            </span>
+            <span *ngIf="status">
+                <p class="has-error">
+                    {{message}}
+                </p>
+            </span>
+            <mat-form-field class="full-width">
+                <mat-label>Contact Number</mat-label>
+                <input  matInput  placeholder="Contact Number" formControlName="contactNumber"  required [class.is-invalid]="(form.get('contactNumber'))">
+            </mat-form-field> 
+            <span *ngIf="form.get('contactNumber').hasError('pattern')">
+                    <p class="has-error">
+                        Required only number with max 11 digit!
+                    </p>
+                </span>
+            <mat-form-field class="full-width">
+                <mat-label>Email</mat-label>
+                <input  matInput  placeholder="Email" formControlName="email" required [class.is-invalid]="(form.get('email'))">
+            </mat-form-field>
+            <span *ngIf="form.get('email').hasError('min')">
+                <p class="has-error" >
+                   *Email must contain with a mini 10!
+                </p>    
+            </span> 
+            <mat-form-field class="full-width">
+                <mat-label>Password</mat-label>
+                <input  matInput  placeholder="Password"  formControlName="password" required [class.is-invalid]="(form.get('password'))">
+            </mat-form-field>
+            <!-- <span class="invalid-feedback" *ngIf="(form.get('name').touched || form.get('name').dirty) && form.get('name').invalid"></span> -->
+            <span *ngIf="(form.get('password').hasError('pattern') ||form.get('password').dirty) && form.get('password').invalid">
+                <p class="has-error" >
+                    *Password required 1 number and 1 letter <br>
+                    *Password 11 minimun length
+                </p>
+            </span>
+        </mat-card-content>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-raised-button  [disabled]="form.invalid"  (click)="create()" [color]="data.mode ==='create'?'primary':'accent'">
+        {{data.mode}}
+    </button>
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Cancel</button>
+  </div>
+</form>
+
+
+<style>
+    .mat-form-field{
+        width: 100%;
+    }
+    .has-error{
+        font-size: 10px;
+        color: #de1313;
+        background: #ff00000d;
+        margin: 10px 0px;
+        margin-top: -14px;
+    }
+
+</style>
+

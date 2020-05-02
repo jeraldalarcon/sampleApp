@@ -1,0 +1,11 @@
+
+<mat-toolbar color="default">{{data.title}}</mat-toolbar>
+<mat-card>
+        <p>Do you want to delete user {{data.id}}</p>
+        <div mat-dialog-actions>
+            <button mat-button mat-raised-button (click)="delete(data.id)" color="accent">
+                {{data.mode}}
+            </button>
+            <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Cancel</button>
+          </div>
+      </mat-card>

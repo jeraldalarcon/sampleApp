@@ -1,0 +1,26 @@
+
+<mat-card class="example-card" style="    width: 300px;">
+    <mat-toolbar color="primary" class="login-title">lOGIN</mat-toolbar>
+    <mat-card-content>
+      <form [formGroup]="form" class="example-form">
+              <mat-form-field class="example-full-width">
+              <input matInput  placeholder="Username" formControlName="userName"  required [class.is-invalid]="(form.get('userName'))">
+              </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Password" formControlName="password" type="password"  required [class.is-invalid]="(form.get('password'))">
+            </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <mat-card>
+      <button mat-raised-button (click)="login()"  [disabled]="form.invalid" color="primary">Login</button>
+      <a color="primary"  (click)="openDialog()" class="signUp">Sign-Up</a>        
+      </mat-card>
+
+    </mat-card-actions>
+    <mat-card style="color:red;border:1px solid red;" *ngIf="msg"><h6>{{msg}}</h6></mat-card >
+  </mat-card>
+
+
+
+  

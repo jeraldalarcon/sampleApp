@@ -1,0 +1,83 @@
+
+<mat-card class="example-card" style="margin: 30px 35%;">
+        <mat-card-header>
+          <mat-card-title>USER INFORMATION</mat-card-title>
+          <!-- <button mat-button color="accent" (click)="update()">UPDATE</button>
+          <mat-chip color="warn" (click)="delete(userId)">DELETE</mat-chip> -->
+        </mat-card-header>
+        <mat-card-content >
+          <form [formGroup]="form" class="example-form">
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Name" formControlName="name"  required [class.is-invalid]="(form.get('name'))">
+                  </mat-form-field>
+                  <span class="invalid-feedback" *ngIf="(form.get('name').touched || form.get('name').dirty) && form.get('name').invalid">
+                    Name is required
+                  </span> 
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Password" formControlName="password" type="password"  required [class.is-invalid]="(form.get('password'))">
+                    </mat-form-field>
+                    <span *ngIf="form.get('password').hasError('pattern') ">
+                        Password is required
+                    </span> 
+                </td>
+            </tr>
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Username" formControlName="userName"  required [class.is-invalid]="(form.get('userName'))">
+                  </mat-form-field>
+                  <span class="invalid-feedback" *ngIf="(form.get('userName').touched || form.get('userName').dirty) && form.get('userName').invalid">
+                      User Name is required
+                  </span> 
+                  <span *ngIf="form.get('userName').hasError('pattern')">
+                      <p class="has-error">
+                        Required 1 number and 1 letter
+                      </p>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="email" formControlName="email"  required [class.is-invalid]="(form.get('email'))">
+                  </mat-form-field>
+                  <span class="invalid-feedback" *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid">
+                        Email is required
+                  </span> 
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="contactNumber" formControlName="contactNumber"  required [class.is-invalid]="(form.get('contactNumber'))">
+                  </mat-form-field>
+                  <span class="invalid-feedback" *ngIf="(form.get('contactNumber').touched || form.get('contactNumber').dirty) && form.get('contactNumber').invalid">
+                        contactNumber is required
+                  </span> 
+                </td>
+              </tr>
+        </table>
+          </form>
+          <!-- <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner> -->
+        </mat-card-content>
+        <mat-card-actions>
+          <!-- <button mat-raised-button (click)="login()" color="primary">Login</button> -->
+          <mat-chip-list aria-label="Fish selection">
+              <mat-chip color="primary" selected (click)="update()">UPDATE</mat-chip>
+              <mat-chip color="accent" selected (click)="delete(userId)">DELETE</mat-chip>
+            </mat-chip-list>
+        </mat-card-actions>
+      </mat-card>
+
+
+    
+    
+    
+      

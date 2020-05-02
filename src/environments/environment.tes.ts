@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  background : 'red'
+  background : 'purple'
 };
 
 /*

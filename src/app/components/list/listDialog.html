@@ -1,0 +1,53 @@
+
+<h1 mat-dialog-title >{{data.title}}</h1>
+<!-- <form [formGroup]="data.mode === 'create'?createForm:updateForm" *ngIf="data.mode !== 'delete'?true:false"> -->
+<form [formGroup]="createForm" *ngIf="data.mode !== 'delete'?true:false">
+  <div mat-dialog-content>
+          <mat-card-content>
+                    <mat-form-field class="full-width" style="padding:10px;">
+                            <mat-label>Name</mat-label>
+                            <input  matInput  placeholder="First name"  formControlName="name"  required>
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>User Name</mat-label>
+                            <input  matInput  placeholder="User name" formControlName="userName"  required>
+                        </mat-form-field>
+                        <!-- <span class="invalid-feedback" *ngIf="(createForm.get('userName').touched || createForm.get('userName').dirty) && createForm.get('userName').hasError('required')">
+                                User Name is required
+                            </span>  -->
+                            <span *ngIf="createForm.get('userName').hasError('pattern')">
+                                <p class="has-error">
+                                  Required 1 number and 1 letter
+                                </p>
+                            </span>
+                        <mat-form-field class="full-width">
+                            <mat-label>Contact Number</mat-label>
+                            <input  matInput  placeholder="Contact Number" formControlName="contactNumber"  required>
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>Email</mat-label>
+                            <input  matInput  placeholder="Email" formControlName="email" required>
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>Password</mat-label>
+                            <input  matInput  placeholder="Password"  formControlName="password" required>
+                        </mat-form-field>
+        </mat-card-content>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-raised-button (click)="data.mode==='create'?create():update()" [color]="data.mode ==='create'?'primary':'accent'">
+        {{data.mode}}
+    </button>
+    <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Cancel</button>
+  </div>
+</form>
+
+<mat-card *ngIf="data.mode === 'delete'">
+  <p>Do you want to delete user {{data.id}}</p>
+  <div mat-dialog-actions>
+      <button mat-button mat-raised-button (click)="delete(data.id)" color="accent">
+          {{data.mode}}
+      </button>
+      <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Cancel</button>
+    </div>
+</mat-card>
